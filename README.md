@@ -1,4 +1,4 @@
-Example project for [Z2 RPC](https://github.com/spxbhuhub/z2-rpc).
+Example project for [Z2 RPC](https://github.com/spxbhuhb/z2-rpc).
 
 ```shell
 ./gradlew run
