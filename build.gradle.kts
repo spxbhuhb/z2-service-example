@@ -2,6 +2,7 @@
  * Copyright © 2020-2021, Simplexion, Hungary and contributors. Use of this source code is governed by the Apache 2.0 license.
  */
 
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import java.net.URI
 
 plugins {
@@ -25,8 +26,9 @@ application {
 
 kotlin {
 
+    jvmToolchain(11)
+
     jvm {
-        jvmToolchain(11)
         withJava()
     }
 
@@ -48,7 +50,11 @@ kotlin {
 }
 
 dependencies {
- //   add("kspCommonMainMetadata", "hu.simplexion.z2:z2-rpc-runtime:2023.7.7-SNAPSHOT")
+//    add("kspCommonMainMetadata", "hu.simplexion.z2:z2-rpc-runtime:2023.7.7-SNAPSHOT")
     add("kspJs", "hu.simplexion.z2:z2-rpc-processor:2023.7.7-SNAPSHOT")
     add("kspJvm", "hu.simplexion.z2:z2-rpc-processor:2023.7.7-SNAPSHOT")
+}
+
+kotlin.sourceSets.commonMain {
+    kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
 }
