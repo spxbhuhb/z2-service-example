@@ -1,11 +1,8 @@
+import hu.simplexion.z2.commons.util.localLaunch
 import hu.simplexion.z2.rpc.ktor.client.WebsocketApiCallTransport
 import hu.simplexion.z2.rpc.runtime.defaultApiCallTransport
 import hu.simplexion.z2.rpc.test.ClickApi
-
 import kotlinx.browser.document
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLElement
 
@@ -17,10 +14,8 @@ fun main() {
 
     button.innerText = "Click Me!"
     button.addEventListener("click", {
-        CoroutineScope(Dispatchers.Default).launch {
-            println("click")
-            val clicked = ClickApi.click()
-            feedback.innerText = "Clicked $clicked times"
+        localLaunch {
+            feedback.innerText = "Clicked ${ClickApi.click()} times"
         }
     })
 

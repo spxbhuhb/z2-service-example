@@ -2,13 +2,12 @@
  * Copyright © 2020-2021, Simplexion, Hungary and contributors. Use of this source code is governed by the Apache 2.0 license.
  */
 
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 import java.net.URI
 
 plugins {
-    kotlin("multiplatform") version "1.8.22"
-    kotlin("plugin.serialization") version "1.8.22"
-    id("com.google.devtools.ksp")version "1.8.22-1.0.11"
+    kotlin("multiplatform") version "1.9.0"
+    kotlin("plugin.serialization") version "1.9.0"
+    id("com.google.devtools.ksp")version "1.9.0-1.0.11"
     application
 }
 
@@ -19,6 +18,8 @@ repositories {
         url = URI("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     }
 }
+
+val z2_rpc_version : String by project
 
 application {
     mainClass.set("hu.simplexion.z2.rpc.test.MainKt")
@@ -40,8 +41,8 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation("hu.simplexion.z2:z2-rpc-runtime:2023.7.7-SNAPSHOT")
-                implementation("hu.simplexion.z2:z2-rpc-ktor:2023.7.7-SNAPSHOT")
+                implementation("hu.simplexion.z2:z2-rpc-runtime:${z2_rpc_version}")
+                implementation("hu.simplexion.z2:z2-rpc-ktor:${z2_rpc_version}")
             }
         }
         val jvmMain by getting
@@ -49,10 +50,16 @@ kotlin {
     }
 }
 
+// https://github.com/google/ksp/issues/567#issuecomment-1510477456
+
 dependencies {
-//    add("kspCommonMainMetadata", "hu.simplexion.z2:z2-rpc-runtime:2023.7.7-SNAPSHOT")
-    add("kspJs", "hu.simplexion.z2:z2-rpc-processor:2023.7.7-SNAPSHOT")
-    add("kspJvm", "hu.simplexion.z2:z2-rpc-processor:2023.7.7-SNAPSHOT")
+    add("kspCommonMainMetadata", "hu.simplexion.z2:z2-rpc-processor:${z2_rpc_version}")
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
+    if(name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
 }
 
 kotlin.sourceSets.commonMain {

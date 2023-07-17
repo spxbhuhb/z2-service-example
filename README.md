@@ -36,9 +36,8 @@ The use of the API is in [main](src/jsMain/kotlin/main.kt):
 
 ```kotlin
 button.addEventListener("click", {
-    CoroutineScope(Dispatchers.Default).launch {
-        val clicked = ClickApi.click()
-        feedback.innerText = "Clicked $clicked times"
+    localLaunch {
+        feedback.innerText = "Clicked ${ClickApi.click()} times"
     }
 })
 ```
