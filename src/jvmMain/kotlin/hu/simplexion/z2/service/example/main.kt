@@ -1,7 +1,7 @@
-package hu.simplexion.z2.rpc.test
+package hu.simplexion.z2.service.example
 
 import hu.simplexion.z2.rpc.ktor.server.websocketApiCallTransport
-import hu.simplexion.z2.rpc.runtime.defaultApiCallTransport
+import hu.simplexion.z2.service.runtime.defaultServiceProviderRegistry
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -23,12 +23,13 @@ fun Application.module() {
         masking = false
     }
 
-    defaultApiCallTransport += ClickApiProvider()
+    val provider = ClickServiceProvider()
+    defaultServiceProviderRegistry[provider.serviceName] = provider
 
     routing {
         get("/") {
             call.respondText("Hello, world!")
         }
-        websocketApiCallTransport("/z2/ws")
+        websocketApiCallTransport("/z2/service")
     }
 }

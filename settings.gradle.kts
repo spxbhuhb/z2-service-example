@@ -9,4 +9,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "z2-rpc-example"
+rootProject.name = "z2-service-example"

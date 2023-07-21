@@ -1,43 +1,43 @@
-Example project for [Z2 RPC](https://github.com/spxbhuhb/z2-rpc).
+Example project for [Z2 Service](https://github.com/spxbhuhb/z2-service).
 
 ```shell
 ./gradlew run
 ./gradlew jsBrowserRun
 ```
 
-The example defines the [ClickApiSpec](src/commonMain/kotlin/hu/simplexion/z2/rpc/test/ClickApiSpec.kt) API:
+[ClickService](src/commonMain/kotlin/hu/simplexion/z2/service/example/ClickService.kt) defines the service:
 
 ```kotlin
-@ApiSpec
-interface ClickApiSpec {
+interface ClickService : Service {
 
-    suspend fun click() : Int
+    suspend fun click() : Int = service()
 
 }
 ```
 
-The implementation of the API is in [ClickApiProvider](src/jvmMain/kotlin/hu/simplexion/z2/rpc/test/ClickApiProvider.kt):
+[ClickServiceProvider](src/jvmMain/kotlin/hu/simplexion/z2/service/example/ClickServiceProvider.kt) provides the service:
 
 ```kotlin
-class ClickApiProvider : ClickApiProviderBase {
+class ClickServiceProvider : ClickService, ServiceProvider {
 
     // The use of `AtomicInteger` makes this very simple implementation thread safe.
-    // Z2 RPC does not guarantee thread safety.
+    // Z2 Service does not guarantee thread safety.
     var clicked = AtomicInteger(0)
 
-    override fun Api.click(): Int {
+    override suspend fun click() : Int {
         return clicked.incrementAndGet()
     }
 
 }
 ```
 
-The use of the API is in [main](src/jsMain/kotlin/main.kt):
+[main](src/jsMain/kotlin/main.kt) uses the service:
 
 ```kotlin
 button.addEventListener("click", {
     localLaunch {
-        feedback.innerText = "Clicked ${ClickApi.click()} times"
+        feedback.innerText = "Clicked ${Click.click()} times"
     }
 })
 ```
+
