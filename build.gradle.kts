@@ -6,6 +6,7 @@ import java.net.URI
 
 plugins {
     kotlin("multiplatform") version "1.9.0"
+    id("hu.simplexion.z2.service") version "2023.7.21-SNAPSHOT"
     application
 }
 

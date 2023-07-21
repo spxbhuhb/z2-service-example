@@ -1,6 +1,6 @@
 package hu.simplexion.z2.service.example
 
-import hu.simplexion.z2.rpc.ktor.server.websocketApiCallTransport
+import hu.simplexion.z2.service.ktor.server.basicWebsocketServiceCallTransport
 import hu.simplexion.z2.service.runtime.defaultServiceProviderRegistry
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -30,6 +30,6 @@ fun Application.module() {
         get("/") {
             call.respondText("Hello, world!")
         }
-        websocketApiCallTransport("/z2/service")
+        basicWebsocketServiceCallTransport("/z2/services")
     }
 }
