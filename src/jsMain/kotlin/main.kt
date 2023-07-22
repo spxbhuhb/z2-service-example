@@ -8,7 +8,7 @@ import kotlinx.browser.window
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLElement
 
-object Clicks : ClickService, ServiceConsumer
+object ClickServiceConsumer : ClickService, ServiceConsumer
 
 fun main() {
     defaultServiceCallTransport = BasicWebSocketServiceTransport(
@@ -25,7 +25,7 @@ fun main() {
     button.innerText = "Click Me!"
     button.addEventListener("click", {
         localLaunch {
-            feedback.innerText = "Clicked ${Clicks.click()} times"
+            feedback.innerText = "Clicked ${ClickServiceConsumer.click()} times"
         }
     })
 
