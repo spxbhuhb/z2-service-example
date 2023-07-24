@@ -1,11 +1,11 @@
 # How to contribute
 
-If your contribution is a bugfix, try to [search](https://github.com/spxbhuhb/z2-rpc/issues)
+If your contribution is a bugfix, try to [search](https://github.com/spxbhuhb/z2-service/issues)
 if there is already an open ticket and open a new one if not yet opened.
 
 Contributions are made using Github [pull requests](https://help.github.com/en/articles/about-pull-requests).
 
-1. [Create](https://github.com/spxbhuhb/z2-rpc/compare) a new PR, your PR should request to merge to the **master** branch.
+1. [Create](https://github.com/spxbhuhb/z2-service/compare) a new PR, your PR should request to merge to the **master** branch.
 2. Ensure that the description is clear, refer to an existing ticket/bug if applicable.
 3. When contributing a new feature, provide motivation and use-cases describing why
    the feature is important enough to be delivered with the stack to everyone.
