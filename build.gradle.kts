@@ -9,9 +9,7 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    google()
 }
 
 val z2_version : String by project
