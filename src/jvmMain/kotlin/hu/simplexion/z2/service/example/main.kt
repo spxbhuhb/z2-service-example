@@ -23,8 +23,7 @@ fun Application.module() {
         masking = false
     }
 
-    val provider = ClickServiceProvider()
-    defaultServiceProviderRegistry[provider.serviceName] = provider
+    defaultServiceProviderRegistry += ClickServiceProvider()
 
     routing {
         get("/") {
