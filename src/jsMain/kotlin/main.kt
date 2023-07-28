@@ -1,14 +1,14 @@
 import hu.simplexion.z2.commons.util.localLaunch
 import hu.simplexion.z2.service.example.ClickService
 import hu.simplexion.z2.service.ktor.client.BasicWebSocketServiceTransport
-import hu.simplexion.z2.service.runtime.ServiceConsumer
 import hu.simplexion.z2.service.runtime.defaultServiceCallTransport
+import hu.simplexion.z2.service.runtime.getService
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLElement
 
-object ClickServiceConsumer : ClickService, ServiceConsumer
+val clicks = getService<ClickService>()
 
 fun main() {
     defaultServiceCallTransport = BasicWebSocketServiceTransport(
@@ -25,7 +25,7 @@ fun main() {
     button.innerText = "Click Me!"
     button.addEventListener("click", {
         localLaunch {
-            feedback.innerText = "Clicked ${ClickServiceConsumer.click()} times"
+            feedback.innerText = "Clicked ${clicks.click()} times"
         }
     })
 

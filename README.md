@@ -10,7 +10,7 @@ Example project for [Z2 Service](https://github.com/spxbhuhb/z2-service).
 ```kotlin
 interface ClickService : Service {
 
-    suspend fun click() : Int = service()
+    suspend fun click() : Int
 
 }
 ```
@@ -34,9 +34,10 @@ class ClickServiceProvider : ClickService, ServiceProvider {
 [main](src/jsMain/kotlin/main.kt) uses the service:
 
 ```kotlin
+val clicks = getService<ClickService>()
 button.addEventListener("click", {
     localLaunch {
-        feedback.innerText = "Clicked ${Click.click()} times"
+        feedback.innerText = "Clicked ${clicks.click()} times"
     }
 })
 ```
