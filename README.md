@@ -15,7 +15,7 @@ interface ClickService : Service {
 }
 ```
 
-[ClickServiceProvider](src/jvmMain/kotlin/hu/simplexion/z2/service/example/ClickServiceProvider.kt) provides the service:
+[ClickServiceProvider](src/jvmMain/kotlin/hu/simplexion/z2/service/example/ClickServiceImpl.kt) provides the service:
 
 ```kotlin
 class ClickServiceProvider : ClickService, ServiceProvider {

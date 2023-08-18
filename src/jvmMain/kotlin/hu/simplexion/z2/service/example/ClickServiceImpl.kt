@@ -1,11 +1,11 @@
 package hu.simplexion.z2.service.example
 
-import hu.simplexion.z2.service.runtime.ServiceProvider
+import hu.simplexion.z2.service.runtime.ServiceImpl
 import java.util.concurrent.atomic.AtomicInteger
 
-class ClickServiceProvider : ClickService, ServiceProvider {
+var clicked = AtomicInteger(0)
 
-    var clicked = AtomicInteger(0)
+class ClickServiceImpl : ClickService, ServiceImpl {
 
     override suspend fun click(): Int {
         return clicked.incrementAndGet()

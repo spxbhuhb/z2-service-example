@@ -1,7 +1,7 @@
 package hu.simplexion.z2.service.example
 
 import hu.simplexion.z2.service.ktor.server.basicWebsocketServiceCallTransport
-import hu.simplexion.z2.service.runtime.defaultServiceProviderRegistry
+import hu.simplexion.z2.service.runtime.defaultServiceImplFactory
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -23,7 +23,7 @@ fun Application.module() {
         masking = false
     }
 
-    defaultServiceProviderRegistry += ClickServiceProvider()
+    defaultServiceImplFactory += ClickServiceImpl()
 
     routing {
         get("/") {
